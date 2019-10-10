@@ -59,7 +59,7 @@ efontEnableJaMini.h is compact Japanese font data.
 ## font size
 
 | Target              | Option              | Characters | Font size |
-|---------------------|---------------------|-----------+|----------+|
+|---------------------|---------------------|------------|-----------|
 | ALL                 | efontEnableAll.h    |     21,727 |   738,718 |
 | Ascii               | efontEnableAscii.h  |        191 |     6,494 |
 | CJK Kanji           | efontEnableCJK.h    |     19,379 |   658,886 |

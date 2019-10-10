@@ -1,25 +1,50 @@
-# efont Font Data(PROGMEM)
+# efont Unicode BDF Font Data
 
 http://openlab.ring.gr.jp/efont/unicode/
 
-/efont/ Unicode Font をArduinoで使えるようにしました。
+/efont/ Unicode font can be used in Arduino.
 
-## 概要
+## Overview
 
-/efont/ Unicode Fontに収録されているf16.bdfとb16.bdfを利用して1文字32バイトの16ピクセルフォントデータです。
-全角文字はf16.bdfを利用し、U+00FFまでの文字は半角としb16.bdfを利用しています。
+16-pixel font data of 32 bytes per character using f16.bdf and b16.bdf included in /efont/ Unicode Font.
+Full-width characters use f16.bdf, characters up to U+00FF are half-width characters, and b16.bdf is used.
 
-## 使い方
+## Font format
 
-ダウンロードしたフォルダをArduinoのlibrariesフォルダにコピーをするか、必要なファイルだけプロジェクトの中にコピーしてください。
+Saved in BDF format.
 
-## フォントサイズを減らす方法
+https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format
 
-フォントは1文字単位で管理されており、1文字単位で読み込まない設定が可能です。
-全21,729文字だと721Kのフォントデータになります。
+```
+const uint8_t efontFontData[] PROGMEM = {
+#ifdef __EFONT_ENABLE_0X0021__ // ! 
+// U+0021 ! 
+0x00, 0x00,
+0x00, 0x00,
+0x00, 0x00,
+0x00, 0x00,
+0x08, 0x00,
+0x08, 0x00,
+0x08, 0x00,
+0x08, 0x00,
+0x08, 0x00,
+0x08, 0x00,
+0x08, 0x00,
+0x00, 0x00,
+0x08, 0x00,
+0x08, 0x00,
+0x00, 0x00,
+0x00, 0x00,
+#endif
+...
+```
 
-efont.hより前に、読み込みフォントを指定することで、文字数を制御できます。
+## How to reduce font size
 
+Fonts are managed in units of characters, and can be set not to be read in units of characters.
+If it is 21,729 characters, it will be 721K font data.
+
+The number of characters can be controlled by specifying the read font before efont.h.
 
 ```
 //#include "efontEnableAll.h"
@@ -29,26 +54,27 @@ efont.hより前に、読み込みフォントを指定することで、文字�
 #include "efont.h"
 ```
 
-efontEnableJaMini.hは常用漢字と表外漢字とよく使いそうな記号が使え、一部の旧字や中国語、ハングル文字、諸外国語などは使えないコンパクトなフォントデータです。
+efontEnableJaMini.h is compact Japanese font data.
 
-## フォントサイズ
+## font size
 
-| 対象            | オプション          | 文字数 | フォント容量 |
-|-----------------|---------------------|--------|--------------|
-| すべて          | efontEnableAll.h    | 21,727 | 738,718      |
-| Ascii           | efontEnableAscii.h  | 191    | 6,494        |
-| CJK漢字         | efontEnableCJK.h    | 19,379 | 658,886      |
-| 簡体字中国語    | efontEnableCn.h     | 18,077 | 614,618      |
-| 日本語          | efontEnableJa.h     | 10,835 | 368,390      |
-| 日本語(常用＋α) | efontEnableJaMini.h | 4,107  | 139,638      |
-| 韓国語          | efontEnableKr.h     | 8,319  | 282,846      |
-| 繁体字中国語    | efontEnableTw.h     | 13,555 | 460,870      |
+| Target              | Option              | Characters | Font size |
+|---------------------|---------------------|-----------+|----------+|
+| ALL                 | efontEnableAll.h    |     21,727 |   738,718 |
+| Ascii               | efontEnableAscii.h  |        191 |     6,494 |
+| CJK Kanji           | efontEnableCJK.h    |     19,379 |   658,886 |
+| Simplified Chinese  | efontEnableCn.h     |     18,077 |   614,618 |
+| Japanese            | efontEnableJa.h     |     10,835 |   368,390 |
+| Mini Japanese       | efontEnableJaMini.h |      4,107 |   139,638 |
+| Korean              | efontEnableKr.h     |      8,319 |   282,846 |
+| Traditional Chinese | efontEnableTw.h     |     13,555 |   460,870 |
 
-## M5StickC以外での利用方法
+## Usage other than M5StickC
 
-描画周りについては機種ごとに違うため、各自機種に合わせて作り直してください。
+The drawing area is different for each model, so please recreate it for each model.
 
-## サンプルコード
+## Sample code
+
 ```
 #include <M5StickC.h>
 #include "efontEnableJa.h"
@@ -59,7 +85,13 @@ void setup() {
   M5.Lcd.setRotation(0);
   M5.Lcd.setCursor(0, 0);
 
-  printEfont("新しい朝が来た", 0, 16*0);
+  printEfont("Hello", 0, 16*0);
+  printEfont("こんにちは", 0, 16*1);
+  printEfont("你好", 0, 16*2);
+  printEfont("안녕하세요", 0, 16*3);
+  printEfont("Доброе утро", 0, 16*4);
+  printEfont("Päivää", 0, 16*6);
+  printEfont("Здравствуйте", 0, 16*7);
 }
 
 void loop() {

@@ -1,8 +1,14 @@
 #ifndef __EFONT_H__
 #define __EFONT_H__
 
+#ifdef EFONT_USED
+#error "efont.h should be included before uesr library"
+#endif
+
 #include <arduino.h>
 #include "efontFontData.h"
+
+#define EFONT_ENABLE
 
 char* efontUFT8toUTF16( uint16_t *pUTF16, char *pUTF8 ) {
 

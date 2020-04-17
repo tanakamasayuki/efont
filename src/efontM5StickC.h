@@ -1,8 +1,11 @@
 #ifndef __EFONT_M5STICKC_H__
 #define __EFONT_M5STICKC_H__
 
+#define EFONT_USED
+
 #include <M5StickC.h>
 #include "efont.h"
+
 
 //#define EFONT_DEBUG
 

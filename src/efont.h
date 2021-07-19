@@ -5,7 +5,7 @@
 #error "efont.h should be included before uesr library"
 #endif
 
-#include <arduino.h>
+#include <Arduino.h>
 #include "efontFontData.h"
 
 #define EFONT_ENABLE

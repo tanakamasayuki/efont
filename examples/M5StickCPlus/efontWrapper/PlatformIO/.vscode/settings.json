@@ -1,0 +1,46 @@
+{
+    //https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+    "C_Cpp.clang_format_style": "{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, BreakStringLiterals: false, AlignConsecutiveAssignments: Consecutive, AlignConsecutiveMacros: AcrossEmptyLinesAndComments, AlwaysBreakBeforeMultilineStrings: false}",
+    "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, BreakStringLiterals: false, AlignConsecutiveAssignments: Consecutive, AlignConsecutiveMacros: AcrossEmptyLinesAndComments, AlwaysBreakBeforeMultilineStrings: false}",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 4,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "editor.smoothScrolling": true,
+    "files.eol": "\n",
+    "files.autoGuessEncoding": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/bin": true,
+      "**/*.exe": true,
+      "**/*.o": true,
+      "**/*.obj": true,
+      "**/*.ilk": true,
+      "**/*.pdb": true,
+      "**/*.tlog": true,
+      "**/*.idb": true,
+      "**/*.dll": true,
+      "**.vs": true,
+    },
+    "workbench.editor.tabCloseButton": "left",
+    "[markdown]": {
+      "editor.wordWrap": "off",
+      "files.trimTrailingWhitespace": false,
+    },
+    "C_Cpp.clang_format_sortIncludes": false,
+    "files.associations": {
+      "sstream": "cpp",
+      "regex": "cpp",
+      "glcdfont.c": "cpp"
+    },
+
+}

@@ -1,0 +1,110 @@
+diff --git a/src/M5Display.cpp b/src/M5Display.cpp
+index 1a2246c..261797c 100644
+--- a/src/M5Display.cpp
++++ b/src/M5Display.cpp
+@@ -1,14 +1,13 @@
+ #include "M5Display.h"
+ 
+-M5Display::M5Display() : TFT_eSPI() {
+-
++M5Display::M5Display() : GRAPHICS_LIB() {
+   hzk16Used = false;
+   hzk16Type = DontUsedHzk16;
+ }
+ 
+ void M5Display::begin() {
+-   TFT_eSPI::begin();
+-   fillScreen(0);
++  GRAPHICS_LIB::begin();
++  fillScreen(0);
+ }
+ 
+ void M5Display::drawBitmap(int16_t x0, int16_t y0, int16_t w, int16_t h, const uint16_t *data) {
+@@ -189,9 +188,9 @@ void M5Display::writeHzk(char* c){
+ 
+   ascCharWidth = 8 * textsize;
+ 
+-  ascCharHeigth = 16 * textsize;
++  ascCharHeight = 16 * textsize;
+ 
+-  gbkCharWidth = ascCharHeigth;
++  gbkCharWidth = ascCharHeight;
+ 
+   gbkCharHeight = gbkCharWidth;
+   if(ret == NULL) return;
+@@ -213,7 +212,7 @@ void M5Display::writeHzkAsc(const char c) {
+ 
+     cursor_x = 0;
+ 
+-    cursor_y += ascCharHeigth;
++    cursor_y += ascCharHeight;
+ 
+   } else if (c != '\r') {
+ 
+@@ -261,11 +260,11 @@ void M5Display::writeHzkAsc(const char c) {
+ 
+     if (highlighted) {
+ 
+-      fillRect(cursor_x, cursor_y, ascCharWidth, ascCharHeigth, highlightcolor);
++      fillRect(cursor_x, cursor_y, ascCharWidth, ascCharHeight, highlightcolor);
+ 
+     } else if (istransparent == false) {
+ 
+-      fillRect(cursor_x, cursor_y, ascCharWidth, ascCharHeigth, textbgcolor);
++      fillRect(cursor_x, cursor_y, ascCharWidth, ascCharHeight, textbgcolor);
+ 
+     }
+ 
+@@ -317,7 +316,7 @@ void M5Display::writeHzkAsc(const char c) {
+ 
+       cursor_x = 0;
+ 
+-      cursor_y += ascCharHeigth;
++      cursor_y += ascCharHeight;
+ 
+     }
+ 
+diff --git a/src/M5Display.h b/src/M5Display.h
+index 153b84d..d21355e 100644
+--- a/src/M5Display.h
++++ b/src/M5Display.h
+@@ -9,6 +9,13 @@
+ #include "Fonts/HZK16.h"
+ #include "Fonts/ASC16.h"
+ 
++#if defined(USE_EFONT)
++#include <efontWrapper.h>
++using GRAPHICS_LIB = EfontWrapper;
++#else
++using GRAPHICS_LIB = TFT_eSPI;
++#endif
++
+ typedef enum {
+   JPEG_DIV_NONE,
+   JPEG_DIV_2,
+@@ -17,7 +24,6 @@ typedef enum {
+   JPEG_DIV_MAX
+ } jpeg_div_t;
+ 
+-
+ typedef enum
+ {
+   DontUsedHzk16,
+@@ -25,7 +31,7 @@ typedef enum
+   ExternalHzk16
+ }Hzk16Types;
+ 
+-class M5Display : public TFT_eSPI {
++class M5Display : public GRAPHICS_LIB {
+ 
+  public:
+   M5Display();
+@@ -121,7 +127,7 @@ class M5Display : public TFT_eSPI {
+   uint16_t
+           highlightcolor,
+           ascCharWidth, 
+-          ascCharHeigth, 
++          ascCharHeight, 
+           gbkCharWidth, 
+           gbkCharHeight;
+ 

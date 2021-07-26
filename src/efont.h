@@ -2,7 +2,7 @@
 #define __EFONT_H__
 
 #ifdef EFONT_USED
-#error "efont.h should be included before uesr library"
+#error "efont.h should be included before user library"
 #endif
 
 #include <Arduino.h>
@@ -10,7 +10,7 @@
 
 #define EFONT_ENABLE
 
-char* efontUFT8toUTF16( uint16_t *pUTF16, char *pUTF8 ) {
+const char* efontUFT8toUTF16( uint16_t *pUTF16, const char *pUTF8 ) {
 
   // 1Byte Code
   if ( pUTF8[0] < 0x80 ) {

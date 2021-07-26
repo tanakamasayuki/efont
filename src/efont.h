@@ -10,7 +10,7 @@
 
 #define EFONT_ENABLE
 
-const char* efontUFT8toUTF16( uint16_t *pUTF16, const char *pUTF8 ) {
+char* efontUFT8toUTF16( uint16_t *pUTF16, char *pUTF8 ) {
 
   // 1Byte Code
   if ( pUTF8[0] < 0x80 ) {

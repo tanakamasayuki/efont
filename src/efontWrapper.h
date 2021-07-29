@@ -1,5 +1,8 @@
+#ifndef _EFONTWRAPPER_H_
+#define _EFONTWRAPPER_H_
 
-#pragma once
+#define ADAFRUIT_GFX
+#define EFONTENABLEALL
 
 #if defined(ADAFRUIT_GFX)
 #include <Wire.h>
@@ -42,7 +45,7 @@ class EfontWrapper : public GraphicsLib {
    public:
 #if !defined(ADAFRUIT_GFX)
     EfontWrapper();
-#endif 
+#endif
     EfontWrapper(int16_t w, int16_t h);
     ~EfontWrapper(void);
 
@@ -54,3 +57,5 @@ class EfontWrapper : public GraphicsLib {
     const char *_efontUFT8toUTF16(uint16_t *pUTF16, const char *pUTF8);
     void _getefontData(uint8_t *font, uint16_t fontUTF16);
 };
+
+#endif

@@ -1,9 +1,6 @@
 
 #pragma once
 
-#define TFT_ESPI
-#define EFONTENABLEJAMINI
-
 #if defined(ADAFRUIT_GFX)
 #include <Wire.h>
 #include <SPI.h>

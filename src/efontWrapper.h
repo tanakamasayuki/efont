@@ -27,7 +27,7 @@ using GraphicsLib = TFT_eSPI;
 #include <efontEnableCn.h>
 #endif
 #if defined(EFONTENABLEJA)
-#include "efontEnableJa.h"
+#include <efontEnableJa.h>
 #elif defined(EFONTENABLEJAMINI)
 #include <efontEnableJaMini.h>
 #endif
@@ -54,4 +54,3 @@ class EfontWrapper : public GraphicsLib {
     const char *_efontUFT8toUTF16(uint16_t *pUTF16, const char *pUTF8);
     void _getefontData(uint8_t *font, uint16_t fontUTF16);
 };
-

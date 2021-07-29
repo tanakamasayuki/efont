@@ -1,7 +1,7 @@
 #ifndef _EFONTWRAPPER_H_
 #define _EFONTWRAPPER_H_
 
-#define ADAFRUIT_GFX
+#define TFT_ESPI
 #define EFONTENABLEALL
 
 #if defined(ADAFRUIT_GFX)

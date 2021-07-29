@@ -6,7 +6,9 @@
 
 EfontWrapper::EfontWrapper(int16_t w, int16_t h) : GraphicsLib(w, h) {}
 
+#if !defined(ADAFRUIT_GFX)
 EfontWrapper::EfontWrapper() : GraphicsLib() {}
+#endif
 
 EfontWrapper::~EfontWrapper(void) {}
 

@@ -40,7 +40,9 @@ using GraphicsLib = TFT_eSPI;
 
 class EfontWrapper : public GraphicsLib {
    public:
-    EfontWrapper();   
+#if !defined(ADAFRUIT_GFX)
+    EfontWrapper();
+#endif 
     EfontWrapper(int16_t w, int16_t h);
     ~EfontWrapper(void);
 
